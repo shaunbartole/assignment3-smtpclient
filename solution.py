@@ -11,7 +11,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
 
     clientSocket = socket(AF_INET, socket.SOCK_STREAM)
-    clientSocket.connect('127.0.0.1', 1025)
+    clientSocket.connect(127.0.0.1)
 
     recv = clientSocket.recv(1024).decode()
     #print(recv) #You can use these print statement to validate return codes from the server.
