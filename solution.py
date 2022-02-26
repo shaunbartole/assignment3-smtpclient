@@ -1,3 +1,4 @@
+import socket
 from socket import *
 
 
@@ -9,8 +10,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
 
-    # Fill in start
-    # Fill in end
+    clientSocket = socket(AF_INET, socket.SOCK_STREAM)
+    clientSocket.connect('127.0.0.1', 1025)
 
     recv = clientSocket.recv(1024).decode()
     #print(recv) #You can use these print statement to validate return codes from the server.
@@ -26,12 +27,14 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     #    print('250 reply not received from server.')
 
     # Send MAIL FROM command and handle server response.
-    # Fill in start
-    # Fill in end
+    messageFromCommand = "Message From:<test.test.com>\r\n"
+    clientSocket.send(messageFromCommand.encode())
+    recv2 = clientSocket.recv(1024).decode()
 
     # Send RCPT TO command and handle server response.
-    # Fill in start
-    # Fill in end
+    RCPTToCommand = "RECT TO:<shaun.test.com"
+    clientSocket.send(RCPTToCommand.endswith())
+    recv3 = clientSocket.recv(1024).decode()
 
     # Send DATA command and handle server response.
     # Fill in start
