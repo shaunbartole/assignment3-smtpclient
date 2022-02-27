@@ -5,13 +5,14 @@ from socket import *
 def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
+    mailserver = ('127.0.0.1', 1025)
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
 
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
 
     clientSocket = socket(AF_INET, socket.SOCK_STREAM)
-    clientSocket.connect('127.0.0.1', 1025)
+    clientSocket.connect(mailserver)
 
     recv = clientSocket.recv(1024).decode()
     #print(recv) #You can use these print statement to validate return codes from the server.
@@ -44,7 +45,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send message data.
     sendData = "Subject: Hope This Works\r\n"
     clientSocket.send(sendData.encode())
-    clientSocket.send(msg.encode())
+    message = rawText("What is your message: \r\n")
+    clientSocket.send(message.encode())
     clientSocket.send(endmsg.encode())
     recv5 = clientSocket.recv(1024).decode()
 
